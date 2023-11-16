@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código com Subscrita e Exceções</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 20px;
+        }
+
+        header {
+            background-color: #004080;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #004080;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Código com Subscrita e Exceções</h1>
+    </header>
+
+    <section>
+        <h2>Subscrita</h2>
+        <p>Exemplo de herança com classes Animal e Dog:</p>
+        <pre>
+            <code>
+                // Exemplo de Herança
+                function Animal(name) {
+                    this.name = name;
+                }
+                
+                Animal.prototype.speak = function() {
+                    console.log(`${this.name} faz algum som.`);
+                };
+                
+                function Dog(name, breed) {
+                    Animal.call(this, name);
+                    this.breed = breed;
+                }
+                
+                Dog.prototype = Object.create(Animal.prototype);
+                Dog.prototype.constructor = Dog;
+                
+                Dog.prototype.bark = function() {
+                    console.log(`${this.name} late alto!`);
+                };
+                
+                // Uso das classes
+                const myDog = new Dog('Buddy', 'Golden Retriever');
+                myDog.speak();
+                myDog.bark();
+            </code>
+        </pre>
+    </section>
+
+    <section>
+        <h2>Exceções</h2>
+        <p>Exemplo de uso de Getters e Setters com a classe Person:</p>
+        <pre>
+            <code>
+                // Exemplo de Get e Set
+                function Person(firstName, lastName) {
+                    let _firstName = firstName;
+                    let _lastName = lastName;
+                
+                    Object.defineProperty(this, 'fullName', {
+                        get: function() {
+                            return `${_firstName} ${_lastName}`;
+                        }
+                    });
+                
+                    Object.defineProperty(this, 'firstName', {
+                        get: function() {
+                            return _firstName;
+                        },
+                        set: function(newFirstName) {
+                            _firstName = newFirstName;
+                        }
+                    });
+                }
+                
+                // Uso das classes
+                const person = new Person('John', 'Doe');
+                console.log(person.fullName);
+                person.firstName = 'Jane';
+                console.log(person.fullName);
+            </code>
+        </pre>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Código com Subscrita e Exceções. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
